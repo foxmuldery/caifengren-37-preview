@@ -1,0 +1,653 @@
+/* ==========================================================================
+   xiangtang.css —— 采风香堂 · 第一阶段派工骨架
+   冷色 v2b 现有变量；只复用仓库已有事件图，不新增美术。
+   ========================================================================== */
+
+/* ------------------------------ 香堂：虹姐调度台 ------------------------------ */
+.xt-hub {
+  height: 100vh; height: 100dvh;
+  display: flex; flex-direction: column; overflow: hidden;
+  background:
+    radial-gradient(900px 520px at 18% -10%, rgba(54, 74, 78, .28), transparent 62%),
+    radial-gradient(700px 480px at 108% 112%, rgba(52, 62, 58, .22), transparent 58%);
+}
+.xt-hub-top {
+  flex: none; display: flex; align-items: center; gap: 18px;
+  padding: 10px 18px; border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(23,26,25,.96), rgba(12,13,13,.92));
+}
+.xt-brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.xt-brand b { display: block; font-family: var(--serif); font-size: 20px; letter-spacing: .16em; }
+.xt-brand i { display: block; font-style: normal; font-family: var(--mono); font-size: 9.5px; color: var(--dim); letter-spacing: .18em; margin-top: 2px; }
+.xt-seal {
+  width: 42px; height: 42px; flex: none; display: grid; place-items: center;
+  border: 1px solid var(--red); color: var(--red2); font-family: var(--serif);
+  font-size: 24px; transform: rotate(-2deg);
+  box-shadow: inset 0 0 0 3px rgba(166,48,48,.12);
+}
+.xt-day { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.xt-day .mono { color: var(--amber); font-size: 11px; letter-spacing: .2em; }
+.xt-day em { font-style: normal; font-size: 11px; color: var(--dim); }
+.xt-top-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.xt-top-actions .btn { min-height: 40px; padding: 9px 16px; }
+
+.xt-hub-grid {
+  flex: 1; min-height: 0;
+  display: grid; grid-template-columns: 236px minmax(0, 1fr) 264px;
+  gap: 14px; padding: 14px 18px 18px;
+}
+.xt-roster, .xt-cases, .xt-side { min-height: 0; overflow: auto; }
+.xt-roster { display: flex; flex-direction: column; gap: 9px; }
+.xt-sec-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+  padding: 0 2px 4px; border-bottom: 1px solid var(--line);
+}
+.xt-sec-head .mono { font-size: 10px; color: var(--red2); letter-spacing: .24em; }
+.xt-sec-head b { font-family: var(--serif); font-size: 12px; font-weight: 400; color: #cfc6b2; letter-spacing: .08em; }
+
+.xt-agent {
+  display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 9px; align-items: center;
+  padding: 9px; border: 1px solid var(--line);
+  background: linear-gradient(165deg, rgba(28,32,31,.9), rgba(14,16,16,.92));
+}
+.xt-agent-face {
+  width: 46px; height: 52px; overflow: hidden; border: 1px solid var(--line2);
+  display: grid; place-items: center; background: #111414;
+}
+.xt-agent-face img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; filter: saturate(.82); }
+.xt-agent-face b { font-family: var(--serif); font-size: 22px; color: var(--paper2); }
+.xt-agent-meta { min-width: 0; }
+.xt-agent-meta b { display: block; font-family: var(--serif); font-size: 15px; letter-spacing: .08em; }
+.xt-agent-meta i { display: block; font-style: normal; font-size: 10.5px; color: var(--dim); margin-top: 1px; }
+.xt-agent-meta em { display: block; font-style: normal; font-family: var(--mono); font-size: 9px; color: #8ea7a5; margin-top: 3px; letter-spacing: .08em; }
+.xt-agent-state {
+  grid-column: 1 / -1; display: block; font-family: var(--mono); font-size: 9.5px;
+  color: var(--green); letter-spacing: .1em; padding-top: 5px; border-top: 1px dashed rgba(232,224,205,.12);
+}
+.xt-agent.is-busy .xt-agent-state { color: var(--amber); }
+.xt-agent.is-busy { border-color: rgba(201,162,39,.36); }
+.xt-agent-hong .xt-hong-face { font-family: var(--serif); font-size: 24px; color: var(--red2); border-color: rgba(166,48,48,.45); }
+.xt-agent-hong .xt-agent-state { color: var(--red2); }
+
+.xt-cases { display: flex; flex-direction: column; gap: 11px; padding-right: 2px; }
+.xt-case {
+  display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 12px;
+  border: 1px solid var(--line); padding: 10px;
+  background: linear-gradient(160deg, rgba(27,31,30,.92), rgba(13,15,14,.94));
+}
+.xt-case.is-done { opacity: .82; border-color: rgba(127,154,107,.36); }
+.xt-case-photo { min-height: 120px; border: 1px solid var(--line2); overflow: hidden; background: #0c0e0e; }
+.xt-case-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.78) contrast(1.02); }
+.xt-case-main { min-width: 0; display: flex; flex-direction: column; }
+.xt-case-meta { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 10px; color: var(--dim); }
+.xt-case-meta .mono { color: #9db3b0; }
+.xt-risk { color: var(--amber); }
+.xt-case h2 { font-family: var(--serif); font-size: 19px; font-weight: 400; letter-spacing: .08em; margin: 3px 0 4px; }
+.xt-case p { margin: 0 0 8px; font-size: 11.5px; line-height: 1.7; color: #a9a294; }
+.xt-case-assign { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 5px; }
+.xt-assign-lbl { font-family: var(--mono); font-size: 9.5px; letter-spacing: .16em; color: var(--dim); min-width: 48px; }
+.xt-pick, .xt-clear, .xt-go {
+  min-height: 38px; padding: 6px 10px; border: 1px solid var(--line2);
+  background: rgba(20,23,22,.9); color: #cfc7b4; font-size: 11.5px;
+  transition: .15s; letter-spacing: .04em;
+}
+.xt-pick:hover:not(:disabled), .xt-clear:hover { border-color: var(--paper2); color: #fff6e2; }
+.xt-pick.is-on { border-color: var(--red2); color: #f4e6d2; background: rgba(166,48,48,.18); box-shadow: inset 0 0 0 1px rgba(196,74,63,.35); }
+.xt-pick:disabled { opacity: .35; cursor: not-allowed; }
+.xt-pick-sm { min-height: 34px; padding: 4px 8px; font-size: 10.5px; }
+.xt-clear { color: var(--dim); }
+.xt-go {
+  margin-left: auto; min-height: 40px; padding: 8px 20px;
+  background: var(--paper); color: var(--ink); border-color: var(--paper);
+  font-family: var(--serif); font-size: 13px; letter-spacing: .16em;
+}
+.xt-go:hover { background: #fff8e6; }
+.xt-case-result {
+  display: flex; gap: 8px; align-items: baseline; margin-top: 7px; padding-top: 6px;
+  border-top: 1px dashed rgba(232,224,205,.14); font-size: 11px; line-height: 1.55;
+}
+.xt-case-result b { font-family: var(--serif); font-weight: 400; letter-spacing: .12em; white-space: nowrap; flex: none; }
+.xt-case-result.is-closed b { color: var(--green); }
+.xt-case-result.is-open b { color: var(--red2); }
+.xt-case-result span { color: #a9a294; }
+
+.xt-side { display: flex; flex-direction: column; gap: 10px; }
+.xt-side-card {
+  border: 1px solid var(--line); padding: 12px;
+  background: linear-gradient(170deg, rgba(27,31,30,.9), rgba(14,16,15,.94));
+}
+.xt-side-card .mono { font-size: 9.5px; color: var(--red2); letter-spacing: .2em; }
+.xt-side-card p { margin: 7px 0 0; font-size: 11px; line-height: 1.72; color: #a9a294; }
+.xt-side-card .xt-dim { color: var(--dim); }
+.xt-result-row { display: flex; gap: 8px; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed rgba(232,224,205,.1); font-size: 11px; }
+.xt-result-row b { font-family: var(--serif); font-weight: 400; color: var(--amber); }
+.xt-result-row span { color: #b6ae9e; }
+.xt-side-note { border-left: 2px solid var(--teal); }
+.xt-empty { color: var(--dim); font-size: 12px; }
+
+/* ------------------------------ 任务小地图 ------------------------------ */
+.xt-mission .mapwrap { position: relative; }
+.xt-mission-hud {
+  position: absolute; left: 12px; top: 10px; z-index: 7;
+  display: flex; align-items: center; gap: 10px; max-width: calc(100% - 24px);
+  padding: 5px 7px 5px 10px; border: 1px solid rgba(232,224,205,.22);
+  background: rgba(10,12,12,.86); backdrop-filter: blur(4px);
+}
+.xt-mission-hud .mono { font-size: 9px; color: var(--red2); letter-spacing: .18em; white-space: nowrap; }
+.xt-mission-hud b { font-family: var(--serif); font-weight: 400; font-size: 12px; color: #e8dfcb; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.xt-mission-hud .xt-abandon { min-height: 34px; padding: 5px 10px; font-size: 10.5px; white-space: nowrap; }
+.xt-abandon-side { margin-top: 2px; }
+.xt-mission .map-inner { min-height: 100%; }
+
+/* ------------------------------ 事件节点：照片 + 文字选择 ------------------------------ */
+.xt-eventpage {
+  height: 100vh; height: 100dvh; overflow: auto; padding: 22px;
+  display: grid; place-items: center;
+  background:
+    radial-gradient(900px 540px at 20% 0%, rgba(50, 68, 72, .26), transparent 65%),
+    radial-gradient(700px 480px at 100% 100%, rgba(58, 52, 44, .18), transparent 60%);
+}
+.xt-event-card {
+  width: min(1080px, 100%); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  border: 1px solid var(--line2); background: linear-gradient(165deg, #1a1e1d, #0e1010);
+  box-shadow: 0 24px 80px rgba(0,0,0,.55);
+}
+.xt-event-photo { min-height: 380px; border-right: 1px solid var(--line); overflow: hidden; background: #0a0c0c; position: relative; }
+.xt-event-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.8) contrast(1.03); }
+.xt-event-photo::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, transparent 62%, rgba(14,16,16,.72));
+}
+.xt-event-body { padding: 22px 22px 18px; display: flex; flex-direction: column; min-width: 0; }
+.xt-event-meta { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 10px; color: var(--dim); }
+.xt-event-meta .mono { color: var(--red2); letter-spacing: .14em; }
+.xt-event-body h1 { font-family: var(--serif); font-size: clamp(22px, 2.6vw, 32px); font-weight: 400; letter-spacing: .1em; margin: 8px 0 4px; }
+.xt-event-text { font-family: var(--serif); font-size: 13px; line-height: 1.95; color: #b6ae9e; margin: 4px 0 14px; }
+.xt-event-opts { display: flex; flex-direction: column; gap: 8px; }
+.xt-event-opt {
+  display: flex; flex-direction: column; gap: 2px; text-align: left;
+  padding: 11px 13px; min-height: 52px; border: 1px solid var(--line2);
+  background: rgba(22,25,24,.9); color: #d8d0be; transition: .15s;
+}
+.xt-event-opt:hover { border-color: var(--paper2); background: rgba(36,40,38,.92); transform: translateX(2px); }
+.xt-event-opt .mono { font-size: 9px; color: var(--red2); letter-spacing: .16em; }
+.xt-event-opt b { font-family: var(--serif); font-weight: 400; font-size: 14px; letter-spacing: .05em; }
+.xt-event-result { border-left: 2px solid var(--amber); padding: 8px 12px; background: rgba(201,162,39,.06); }
+.xt-event-result .mono { font-size: 9px; color: var(--amber); letter-spacing: .16em; }
+.xt-event-result p { margin: 5px 0 0; font-family: var(--serif); font-size: 13px; line-height: 1.85; color: #cdc4b0; }
+.xt-event-foot { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.xt-event-foot .btn { min-height: 42px; }
+
+/* ------------------------------ 手机 / 窄屏 ------------------------------ */
+@media (max-width: 1199px) {
+  .xt-hub-grid { grid-template-columns: 210px minmax(0, 1fr) 232px; gap: 10px; padding: 10px 12px 12px; }
+  .xt-case { grid-template-columns: 104px minmax(0, 1fr); }
+  .xt-case-photo { min-height: 104px; }
+}
+@media (max-width: 899px), (max-height: 620px) {
+  .xt-hub-top { padding: 7px 10px; gap: 10px; }
+  .xt-brand b { font-size: 16px; }
+  .xt-brand i { display: none; }
+  .xt-seal { width: 34px; height: 34px; font-size: 19px; }
+  .xt-day em { display: none; }
+  .xt-top-actions .btn { min-height: 36px; padding: 6px 10px; font-size: 11px; }
+  .xt-hub-grid { grid-template-columns: 156px minmax(0, 1fr); gap: 8px; padding: 8px 10px 10px; }
+  .xt-side { display: none; }
+  .xt-roster { gap: 6px; }
+  .xt-agent { grid-template-columns: 34px minmax(0, 1fr); gap: 6px; padding: 6px; }
+  .xt-agent-face { width: 34px; height: 40px; }
+  .xt-agent-meta b { font-size: 13px; }
+  .xt-agent-meta i { font-size: 9.5px; }
+  .xt-agent-meta em { display: none; }
+  .xt-agent-state { font-size: 8.5px; padding-top: 3px; }
+  .xt-cases { gap: 8px; }
+  .xt-case { grid-template-columns: 86px minmax(0, 1fr); gap: 8px; padding: 8px; }
+  .xt-case-photo { min-height: 86px; }
+  .xt-case h2 { font-size: 15px; margin: 2px 0 3px; }
+  .xt-case p { font-size: 10.5px; line-height: 1.55; margin-bottom: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .xt-case-meta { font-size: 9px; gap: 2px 8px; }
+  .xt-pick, .xt-clear, .xt-go { min-height: 34px; padding: 4px 8px; font-size: 10.5px; }
+  .xt-go { min-height: 36px; padding: 5px 13px; font-size: 12px; }
+  .xt-mission-hud { left: 8px; top: 7px; gap: 6px; padding: 4px 5px 4px 7px; max-width: calc(100% - 16px); }
+  .xt-mission-hud b { font-size: 10.5px; max-width: 34vw; }
+  .xt-mission-hud .xt-abandon { min-height: 30px; padding: 3px 7px; font-size: 9.5px; }
+  .xt-eventpage { padding: 8px; place-items: stretch; }
+  .xt-event-card { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); max-height: calc(100dvh - 16px); }
+  .xt-event-photo { min-height: 0; }
+  .xt-event-body { padding: 10px 12px; overflow: auto; }
+  .xt-event-body h1 { font-size: 19px; margin: 4px 0 3px; }
+  .xt-event-text { font-size: 11px; line-height: 1.7; margin: 2px 0 8px; }
+  .xt-event-opt { min-height: 44px; padding: 6px 9px; }
+  .xt-event-opt b { font-size: 12px; }
+  .xt-event-result p { font-size: 11px; line-height: 1.65; }
+  .xt-event-foot { margin-top: 8px; }
+  .xt-event-foot .btn { min-height: 38px; padding: 7px 12px; font-size: 11.5px; }
+}
+@media (max-width: 599px) and (orientation: portrait) {
+  .xt-hub { overflow: auto; height: auto; min-height: 100dvh; }
+  .xt-hub-grid { display: flex; flex-direction: column; }
+  .xt-roster { overflow: visible; }
+  .xt-cases { overflow: visible; }
+  .xt-case { grid-template-columns: 1fr; }
+  .xt-case-photo { min-height: 140px; }
+  .xt-event-card { grid-template-columns: 1fr; max-height: none; }
+  .xt-event-photo { min-height: 190px; border-right: none; border-bottom: 1px solid var(--line); }
+}
+
+/* ==========================================================================
+   采风香堂 · 空间界面（第二阶段续）
+   一楼店面 / 密门楼梯 / 地下大厅 / 立体训练区
+   背景使用已批准照片（shop / stair / hall / train），前景仅深青灰 + 旧木 + 暖灯。
+   ========================================================================== */
+
+.xt-hub.xt-shop-scene,
+.xt-hub.xt-stair-scene,
+.xt-hub.xt-hall-scene,
+.xt-hub.xt-train-scene {
+  background:
+    radial-gradient(900px 520px at 18% -10%, rgba(54, 74, 78, .24), transparent 62%),
+    radial-gradient(700px 480px at 108% 112%, rgba(52, 62, 58, .18), transparent 58%);
+}
+.xt-shop-stage, .xt-stair-stage, .xt-hall-stage, .xt-train-stage {
+  position: relative; flex: 1; min-height: 0; overflow: hidden; isolation: isolate;
+}
+.xt-shop-art, .xt-stair-art, .xt-hall-bg, .xt-train-art {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+}
+
+/* 已批准的照片背景：cover / center / no-repeat，压在热区与文案之下，不拦点击。 */
+.xt-shop-art {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url('assets/art/xiangtang/xt_shop.webp');
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+.xt-stair-art {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url('assets/art/xiangtang/xt_stair.webp');
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+.xt-hall-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url('assets/art/xiangtang/xt_hall.webp');
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+.xt-train-art {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url('assets/art/xiangtang/xt_train.webp');
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+.xt-shop-vignette {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% 45%, transparent 52%, rgba(0, 0, 0, .34) 100%),
+    linear-gradient(180deg, rgba(5, 9, 9, .2), transparent 22%, transparent 78%, rgba(5, 9, 9, .28));
+}
+
+/* ------------------------------ 一楼店面 ------------------------------ */
+.xt-spot {
+  position: absolute; z-index: 5; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1px;
+  min-width: 116px; min-height: 46px; padding: 7px 11px 7px 26px;
+  border: 1px solid rgba(214, 190, 145, .26); border-radius: 3px;
+  background: linear-gradient(165deg, rgba(14, 21, 20, .82), rgba(8, 12, 12, .72));
+  color: #e2d8c3; text-align: left; letter-spacing: .04em;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, .35);
+  backdrop-filter: blur(3px);
+  transition: border-color .16s, background .16s, transform .16s;
+}
+.xt-spot:hover, .xt-spot:focus-visible {
+  border-color: rgba(232, 206, 158, .72); background: rgba(22, 30, 28, .9);
+  transform: translate(-50%, -50%) translateY(-2px);
+}
+.xt-spot-dot {
+  position: absolute; left: 10px; top: 50%; width: 7px; height: 7px;
+  margin-top: -3px; border-radius: 50%; background: var(--amber);
+  box-shadow: 0 0 0 4px rgba(201, 162, 39, .13), 0 0 12px rgba(255, 214, 140, .5);
+}
+.xt-spot b { font-family: var(--serif); font-weight: 400; font-size: 13px; line-height: 1.25; }
+.xt-spot i { font-style: normal; font-family: var(--mono); font-size: 8.5px; color: #92a29b; letter-spacing: .08em; white-space: nowrap; }
+
+.xt-door {
+  position: absolute; z-index: 7; transform: translate(-50%, -50%);
+  width: 136px; min-height: 84px; padding: 14px 10px 12px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  border: 1px solid rgba(226, 181, 104, .62); border-radius: 4px;
+  background: linear-gradient(170deg, rgba(34, 25, 16, .92), rgba(11, 15, 14, .9));
+  color: #f2e6cf; text-align: center;
+  box-shadow: 0 0 0 1px rgba(226, 181, 104, .12), 0 12px 40px rgba(0, 0, 0, .5);
+  transition: border-color .16s, box-shadow .16s;
+}
+.xt-door:hover, .xt-door:focus-visible {
+  border-color: #f0d7a2;
+  box-shadow: 0 0 0 4px rgba(226, 181, 104, .14), 0 12px 44px rgba(0, 0, 0, .55);
+}
+.xt-door-ring {
+  position: absolute; left: 50%; top: 50%; width: 78px; height: 78px;
+  margin: -39px 0 0 -39px; border-radius: 50%; pointer-events: none;
+  border: 1px solid rgba(232, 190, 110, .28);
+  animation: xt-door-pulse 3.2s ease-in-out infinite;
+}
+.xt-door-txt { position: relative; display: flex; flex-direction: column; gap: 2px; }
+.xt-door-txt b { font-family: var(--serif); font-weight: 400; font-size: 17px; letter-spacing: .12em; }
+.xt-door-txt i { font-style: normal; font-size: 9px; color: #cbb68f; letter-spacing: .06em; }
+.xt-door.is-open { border-color: rgba(247, 214, 154, .9); background: linear-gradient(170deg, rgba(53, 38, 20, .94), rgba(14, 18, 16, .92)); }
+.xt-shop-scene.is-door-open .xt-door-ring { animation: none; border-color: rgba(247, 214, 154, .6); box-shadow: 0 0 34px rgba(233, 168, 82, .28); }
+@keyframes xt-door-pulse {
+  0%, 100% { transform: scale(.92); opacity: .45; }
+  50% { transform: scale(1.08); opacity: .9; }
+}
+
+.xt-scene-guide {
+  position: absolute; z-index: 4; left: 18px; top: 16px; max-width: min(430px, calc(100% - 36px));
+  display: flex; flex-direction: column; gap: 3px; padding: 10px 13px;
+  border-left: 2px solid rgba(201, 162, 39, .6);
+  background: linear-gradient(90deg, rgba(8, 12, 12, .82), rgba(8, 12, 12, .12));
+  pointer-events: none;
+}
+.xt-scene-guide .mono { font-size: 9px; color: var(--amber); letter-spacing: .22em; }
+.xt-scene-guide b { font-family: var(--serif); font-weight: 400; font-size: 16px; letter-spacing: .06em; color: #e8dfcb; }
+.xt-scene-guide i { font-style: normal; font-size: 10.5px; line-height: 1.6; color: #a9b3ab; }
+
+.xt-scene-note {
+  position: absolute; z-index: 9; left: 18px; bottom: 18px;
+  width: min(430px, calc(100% - 36px)); padding: 12px 14px 13px;
+  border: 1px solid rgba(214, 190, 145, .34); border-left: 2px solid var(--amber);
+  background: linear-gradient(165deg, rgba(20, 27, 26, .97), rgba(9, 13, 13, .97));
+  box-shadow: 0 18px 60px rgba(0, 0, 0, .5);
+  animation: xt-note-in .16s ease-out;
+}
+@keyframes xt-note-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.xt-note-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.xt-note-head .mono { font-size: 9px; color: var(--amber); letter-spacing: .16em; }
+.xt-note-x, .xt-modal-x {
+  width: 36px; height: 36px; flex: none; display: grid; place-items: center;
+  border: 1px solid var(--line2); background: rgba(12, 16, 15, .8); color: #cfc7b4;
+  font-size: 19px; line-height: 1;
+}
+.xt-note-x:hover, .xt-modal-x:hover { border-color: var(--paper2); color: #fff6e2; }
+.xt-scene-note > b { display: block; font-family: var(--serif); font-weight: 400; font-size: 18px; letter-spacing: .1em; margin-top: 2px; }
+.xt-scene-note > p { margin: 4px 0 0; font-size: 11.5px; line-height: 1.75; color: #b6ae9e; }
+
+/* ------------------------------ 密门之后：楼梯 ------------------------------ */
+.xt-stair-caption {
+  position: absolute; z-index: 4; left: 24px; top: 22px; max-width: min(500px, calc(100% - 48px));
+  display: flex; flex-direction: column; gap: 4px; pointer-events: none;
+  padding: 12px 15px; border-left: 2px solid rgba(201, 162, 39, .6);
+  background: linear-gradient(90deg, rgba(7, 11, 11, .84), rgba(7, 11, 11, .08));
+}
+.xt-stair-caption .mono { font-size: 9px; color: var(--amber); letter-spacing: .22em; }
+.xt-stair-caption b { font-family: var(--serif); font-weight: 400; font-size: clamp(18px, 2.2vw, 26px); letter-spacing: .08em; color: #ece2cc; }
+.xt-stair-caption p { margin: 0; max-width: 440px; font-size: 11.5px; line-height: 1.8; color: #a9b3ab; }
+.xt-stair-down {
+  position: absolute; z-index: 6; right: 26px; bottom: 26px;
+  min-width: 240px; min-height: 64px; padding: 10px 18px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  border: 1px solid rgba(232, 198, 134, .6);
+  background: linear-gradient(165deg, rgba(46, 34, 19, .95), rgba(11, 15, 14, .94));
+  color: #f2e6cf; text-align: left;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, .5);
+  transition: border-color .16s, transform .16s;
+}
+.xt-stair-down:hover, .xt-stair-down:focus-visible { border-color: #f0d7a2; transform: translateY(-2px); }
+.xt-stair-down .mono { font-size: 9px; color: var(--amber); letter-spacing: .22em; }
+.xt-stair-down b { font-family: var(--serif); font-weight: 400; font-size: 17px; letter-spacing: .1em; }
+.xt-stair-down i { font-style: normal; font-size: 10px; color: #bda986; letter-spacing: .08em; }
+.xt-stair-back {
+  position: absolute; z-index: 6; left: 24px; bottom: 26px;
+  min-height: 44px; padding: 8px 16px; border: 1px solid var(--line2);
+  background: rgba(12, 16, 15, .82); color: #cfc7b4; font-size: 12px; letter-spacing: .08em;
+}
+.xt-stair-back:hover { border-color: var(--paper2); color: #fff6e2; }
+
+/* ------------------------------ 地下基地大厅 ------------------------------ */
+.xt-hall-table {
+  position: absolute; z-index: 3; inset: 62px 138px 54px;
+  display: flex; flex-direction: column; min-height: 0;
+  border: 2px solid rgba(120, 94, 62, .55); border-radius: 14px;
+  background:
+    linear-gradient(165deg, rgba(47, 38, 27, .97), rgba(24, 21, 17, .98) 55%, rgba(15, 17, 15, .99)),
+    repeating-linear-gradient(90deg, rgba(151, 116, 70, .08) 0 2px, transparent 2px 27px);
+  box-shadow: 0 0 0 5px rgba(10, 13, 12, .55), 0 26px 70px rgba(0, 0, 0, .55), inset 0 0 60px rgba(0, 0, 0, .35);
+  overflow: hidden;
+}
+.xt-hall-table::before {
+  content: ""; position: absolute; inset: 6px; pointer-events: none; border-radius: 9px;
+  border: 1px solid rgba(201, 162, 39, .12);
+}
+.xt-table-head {
+  position: relative; z-index: 1; flex: none; display: flex; align-items: baseline; flex-wrap: wrap; gap: 3px 12px;
+  padding: 8px 14px; border-bottom: 1px dashed rgba(232, 224, 205, .16);
+  background: linear-gradient(90deg, rgba(255, 237, 199, .05), transparent 70%);
+}
+.xt-table-head .mono { font-size: 9px; color: var(--amber); letter-spacing: .2em; }
+.xt-table-head b { font-family: var(--serif); font-weight: 400; font-size: 13px; letter-spacing: .08em; color: #e4dac4; }
+.xt-table-head i { font-style: normal; font-size: 10px; color: #a9a294; }
+.xt-hall-table .xt-hub-grid {
+  position: relative; z-index: 1; flex: 1; min-height: 0;
+  grid-template-columns: 210px minmax(0, 1fr) 236px;
+  padding: 10px 12px 12px; gap: 10px;
+}
+.xt-hall-table .xt-roster, .xt-hall-table .xt-cases, .xt-hall-table .xt-side { background: transparent; }
+.xt-hall-table .xt-case { background: linear-gradient(160deg, rgba(30, 33, 30, .95), rgba(15, 18, 16, .96)); }
+.xt-hall-table .xt-agent { background: linear-gradient(165deg, rgba(31, 34, 31, .94), rgba(16, 19, 17, .95)); }
+
+.xt-facilities { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+.xt-fac {
+  position: absolute; pointer-events: auto; width: 112px; min-height: 60px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1px;
+  padding: 8px 9px 8px 40px; text-align: left;
+  border: 1px solid rgba(190, 176, 142, .28); border-radius: 3px;
+  background: linear-gradient(165deg, rgba(15, 22, 21, .9), rgba(8, 12, 12, .82));
+  color: #ded5c2; box-shadow: 0 8px 26px rgba(0, 0, 0, .4);
+  transition: border-color .16s, background .16s, transform .16s;
+}
+.xt-fac:hover, .xt-fac:focus-visible { border-color: rgba(232, 206, 158, .7); background: rgba(24, 32, 29, .95); transform: translateY(-2px); }
+.xt-fac-ico {
+  position: absolute; left: 9px; top: 50%; width: 24px; height: 24px; margin-top: -12px;
+  display: grid; place-items: center; border: 1px solid rgba(201, 162, 39, .45);
+  color: var(--amber); font-family: var(--serif); font-size: 13px;
+  background: rgba(201, 162, 39, .06);
+}
+.xt-fac b { font-family: var(--serif); font-weight: 400; font-size: 12.5px; letter-spacing: .06em; }
+.xt-fac i { font-style: normal; font-family: var(--mono); font-size: 8px; color: #93a098; letter-spacing: .06em; white-space: nowrap; }
+.xt-fac--lab { left: 16px; top: 16%; }
+.xt-fac--green { left: 16px; bottom: 14%; }
+.xt-fac--mod { right: 16px; top: 16%; }
+.xt-fac--rest { right: 16px; bottom: 14%; }
+.xt-fac--train {
+  left: 50%; top: 9px; transform: translateX(-50%);
+  width: auto; min-width: 150px; min-height: 42px; padding: 6px 14px 6px 40px;
+  border-color: rgba(201, 162, 39, .45);
+}
+.xt-fac--train:hover, .xt-fac--train:focus-visible { transform: translateX(-50%) translateY(-2px); }
+
+/* 设施说明浮层 */
+.xt-modal {
+  position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; padding: 22px;
+  background: rgba(4, 7, 7, .74); backdrop-filter: blur(6px);
+  animation: xt-note-in .16s ease-out;
+}
+.xt-modal-card {
+  width: min(520px, 100%); max-height: min(80dvh, 620px); overflow: auto;
+  padding: 16px 18px 16px; border: 1px solid rgba(214, 190, 145, .38); border-left: 2px solid var(--amber);
+  background: linear-gradient(165deg, rgba(24, 31, 29, .99), rgba(10, 14, 13, .99));
+  box-shadow: 0 30px 90px rgba(0, 0, 0, .65);
+}
+.xt-modal-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.xt-modal-head .mono { font-size: 9px; color: var(--amber); letter-spacing: .16em; }
+.xt-modal-glyph {
+  width: 54px; height: 54px; margin: 12px 0 6px; display: grid; place-items: center;
+  border: 1px solid rgba(201, 162, 39, .5); color: var(--amber); font-family: var(--serif); font-size: 27px;
+  background: rgba(201, 162, 39, .07);
+}
+.xt-modal-card h2 { font-family: var(--serif); font-weight: 400; font-size: 24px; letter-spacing: .12em; margin: 4px 0 6px; }
+.xt-modal-card p { margin: 0; font-size: 12px; line-height: 1.85; color: #b6ae9e; }
+.xt-modal-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; padding-top: 12px; border-top: 1px dashed rgba(232, 224, 205, .16); }
+.xt-lock {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px;
+  border: 1px solid rgba(166, 48, 48, .45); color: #d78a7e;
+  font-family: var(--mono); font-size: 9px; letter-spacing: .14em;
+}
+.xt-lock::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--red2); }
+
+/* ------------------------------ 立体训练区 ------------------------------ */
+.xt-tier-picks {
+  position: absolute; z-index: 5; left: 20px; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 7px;
+}
+.xt-tier-pick {
+  width: 168px; min-height: 52px; padding: 6px 11px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1px;
+  border: 1px solid rgba(190, 176, 142, .28); border-left: 2px solid rgba(190, 176, 142, .4);
+  background: linear-gradient(165deg, rgba(14, 21, 20, .88), rgba(8, 12, 12, .8));
+  color: #ded5c2; text-align: left; transition: .16s;
+}
+.xt-tier-pick:hover, .xt-tier-pick:focus-visible { border-color: rgba(232, 206, 158, .7); background: rgba(24, 32, 29, .95); }
+.xt-tier-pick b { font-family: var(--serif); font-weight: 400; font-size: 15px; letter-spacing: .14em; }
+.xt-tier-pick i { font-style: normal; font-size: 9px; color: #93a098; letter-spacing: .05em; }
+.xt-tier-pick.is-on { border-left-color: var(--amber); border-color: rgba(201, 162, 39, .6); background: rgba(201, 162, 39, .1); color: #fff2d6; }
+.xt-train-caption {
+  position: absolute; z-index: 4; left: 20px; top: 18px; max-width: min(520px, calc(100% - 40px));
+  display: flex; flex-direction: column; gap: 3px; pointer-events: none;
+  padding: 10px 13px; border-left: 2px solid rgba(201, 162, 39, .6);
+  background: linear-gradient(90deg, rgba(7, 11, 11, .84), rgba(7, 11, 11, .08));
+}
+.xt-train-caption .mono { font-size: 9px; color: var(--amber); letter-spacing: .2em; }
+.xt-train-caption b { font-family: var(--serif); font-weight: 400; font-size: 17px; letter-spacing: .08em; color: #e8dfcb; }
+.xt-train-caption p { margin: 0; font-size: 10.5px; line-height: 1.65; color: #a9b3ab; }
+.xt-train-note {
+  position: absolute; z-index: 5; left: 20px; bottom: 20px; max-width: 360px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px;
+  font-size: 10px; color: #a9b3ab;
+}
+.xt-train-back {
+  position: absolute; z-index: 6; right: 22px; bottom: 22px;
+  min-width: 136px; min-height: 48px; padding: 9px 18px;
+  border: 1px solid rgba(232, 198, 134, .55); background: rgba(28, 32, 28, .9);
+  color: #f2e6cf; font-family: var(--serif); font-size: 14px; letter-spacing: .12em;
+}
+.xt-train-back:hover { border-color: #f0d7a2; }
+/* 楼层高亮：照片上的一层半透明分区提示，不另加图，不拦点击。 */
+.xt-train-zone {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0;
+  box-shadow: inset 0 0 0 1px rgba(201, 162, 39, .16);
+  transition: opacity .22s, background .22s;
+}
+.xt-train-scene.is-tier-3 .xt-train-zone {
+  opacity: 1;
+  background: linear-gradient(180deg, rgba(201, 162, 39, .26) 0, rgba(201, 162, 39, .07) 24%, transparent 38%);
+}
+.xt-train-scene.is-tier-2 .xt-train-zone {
+  opacity: 1;
+  background: linear-gradient(180deg, transparent 22%, rgba(201, 162, 39, .2) 32%, rgba(201, 162, 39, .05) 50%, transparent 58%);
+}
+.xt-train-scene.is-tier-1 .xt-train-zone {
+  opacity: 1;
+  background: linear-gradient(180deg, transparent 52%, rgba(201, 162, 39, .18) 64%, rgba(201, 162, 39, .05) 94%, transparent 100%);
+}
+
+/* ------------------------------ 空间界面：窄屏 / 手机 ------------------------------ */
+@media (max-width: 1199px) {
+  .xt-hall-table { inset: 54px 106px 48px; }
+  .xt-hall-table .xt-hub-grid { grid-template-columns: 210px minmax(0, 1fr) 232px; }
+  .xt-fac { width: 94px; min-height: 56px; padding-left: 34px; }
+  .xt-fac-ico { width: 21px; height: 21px; margin-top: -10px; left: 7px; font-size: 12px; }
+  .xt-fac b { font-size: 11.5px; }
+  .xt-fac i { font-size: 7.5px; }
+  .xt-fac--train { width: auto; min-width: 138px; }
+  .xt-stair-caption { max-width: 430px; }
+}
+@media (max-width: 899px), (max-height: 620px) {
+  .xt-hall-table { inset: 38px 80px 34px; }
+  .xt-table-head { padding: 5px 10px; gap: 2px 8px; }
+  .xt-table-head b { font-size: 12px; }
+  .xt-table-head i { display: none; }
+  .xt-hall-table .xt-hub-grid { padding: 7px 8px 8px; gap: 8px; grid-template-columns: 156px minmax(0, 1fr); }
+  .xt-hall-table .xt-roster { gap: 4px; }
+  .xt-hall-table .xt-roster .xt-sec-head { display: none; }
+  .xt-hall-table .xt-agent { grid-template-columns: 30px minmax(0, 1fr); grid-template-rows: auto auto; gap: 0 5px; padding: 4px 6px; }
+  .xt-hall-table .xt-agent-face { grid-row: 1 / span 2; width: 30px; height: 36px; }
+  .xt-hall-table .xt-agent-meta { grid-column: 2; grid-row: 1; }
+  .xt-hall-table .xt-agent-meta b { font-size: 12px; }
+  .xt-hall-table .xt-agent-meta i { font-size: 9px; }
+  .xt-hall-table .xt-agent-meta em { display: none; }
+  .xt-hall-table .xt-agent-state { grid-column: 2; grid-row: 2; padding-top: 0; border-top: 0; font-size: 8px; }
+  .xt-fac { width: 68px; min-height: 44px; padding: 6px 5px 6px 8px; }
+  .xt-fac-ico { display: none; }
+  .xt-fac b { font-size: 10px; letter-spacing: .02em; }
+  .xt-fac i { display: none; }
+  .xt-fac--lab { left: 7px; top: 13%; }
+  .xt-fac--green { left: 7px; bottom: 9%; }
+  .xt-fac--mod { right: 7px; top: 13%; }
+  .xt-fac--rest { right: 7px; bottom: 9%; }
+  .xt-fac--train { min-width: 116px; min-height: 36px; padding: 5px 9px; top: 3px; }
+  .xt-scene-guide { left: 10px; top: 8px; max-width: calc(100% - 20px); padding: 6px 9px; }
+  .xt-scene-guide b { font-size: 13px; }
+  .xt-scene-guide i { font-size: 9px; line-height: 1.45; }
+  .xt-spot { min-width: 92px; min-height: 40px; padding: 5px 8px 5px 22px; }
+  .xt-spot b { font-size: 11.5px; }
+  .xt-spot i { display: none; }
+  .xt-spot-dot { left: 8px; width: 6px; height: 6px; }
+  .xt-door { width: 108px; min-height: 66px; padding: 8px 7px; }
+  .xt-door-txt b { font-size: 14px; }
+  .xt-door-txt i { font-size: 8px; }
+  .xt-door-ring { width: 62px; height: 62px; margin: -31px 0 0 -31px; }
+  .xt-scene-note { left: 10px; bottom: 10px; width: calc(100% - 20px); max-width: 380px; padding: 8px 10px; }
+  .xt-scene-note > b { font-size: 15px; }
+  .xt-scene-note > p { font-size: 10.5px; line-height: 1.6; }
+  .xt-stair-caption { left: 12px; top: 10px; max-width: calc(100% - 24px); padding: 7px 10px; }
+  .xt-stair-caption b { font-size: 16px; }
+  .xt-stair-caption p { font-size: 10px; line-height: 1.55; }
+  .xt-stair-down { right: 12px; bottom: 12px; min-width: 190px; min-height: 52px; padding: 7px 12px; }
+  .xt-stair-down b { font-size: 14px; }
+  .xt-stair-back { left: 12px; bottom: 12px; min-height: 40px; padding: 6px 12px; font-size: 11px; }
+  .xt-tier-picks { left: 10px; gap: 5px; }
+  .xt-tier-pick { width: 124px; min-height: 44px; padding: 4px 8px; }
+  .xt-tier-pick b { font-size: 13px; }
+  .xt-tier-pick i { font-size: 8px; }
+  .xt-train-caption { left: 10px; top: 8px; max-width: calc(100% - 20px); padding: 6px 9px; }
+  .xt-train-caption b { font-size: 14px; }
+  .xt-train-caption p { font-size: 9.5px; line-height: 1.45; }
+  .xt-train-note { left: 10px; bottom: 10px; max-width: 260px; font-size: 9px; }
+  .xt-train-back { right: 10px; bottom: 10px; min-width: 112px; min-height: 42px; font-size: 12px; }
+}
+/* 竖屏 / 极窄：大厅四周改成一排，中央大桌仍可滚动操作 */
+@media (max-width: 599px) {
+  .xt-hub-top { flex-wrap: wrap; }
+  .xt-top-actions { width: 100%; justify-content: flex-start; }
+  .xt-day { flex: 1 1 auto; }
+  .xt-hall-table { inset: 40px 6px 92px; border-radius: 10px; }
+  .xt-table-head { display: none; }
+  .xt-hall-table .xt-hub-grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); padding: 6px; gap: 6px; }
+  .xt-hall-table .xt-roster { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; overflow: visible; padding-bottom: 1px; }
+  .xt-hall-table .xt-roster .xt-sec-head { display: none; }
+  .xt-hall-table .xt-agent { min-width: 0; grid-template-columns: 30px minmax(0, 1fr); gap: 5px; padding: 5px; }
+  .xt-hall-table .xt-agent-face { width: 30px; height: 34px; }
+  .xt-hall-table .xt-agent-meta b { font-size: 12px; }
+  .xt-hall-table .xt-agent-meta em { display: none; }
+  .xt-hall-table .xt-agent-state { padding-top: 2px; font-size: 8px; }
+  .xt-hall-table .xt-agent-hong { min-width: 0; }
+  .xt-hall-table .xt-cases { padding-right: 0; }
+  .xt-hall-table .xt-case { grid-template-columns: 82px minmax(0, 1fr); gap: 8px; padding: 7px; }
+  .xt-hall-table .xt-case-photo { min-height: 84px; }
+  .xt-hall-table .xt-case h2 { font-size: 15px; }
+  .xt-hall-table .xt-case p { font-size: 10.5px; line-height: 1.55; }
+  .xt-facilities { inset: auto 6px 6px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+  .xt-fac, .xt-fac--train {
+    position: static; width: auto; min-width: 0; min-height: 50px;
+    padding: 5px 3px; align-items: center; text-align: center; transform: none;
+  }
+  .xt-fac--train:hover, .xt-fac--train:focus-visible { transform: none; }
+  .xt-fac b { font-size: 9.5px; }
+  .xt-scene-guide { max-width: calc(100% - 16px); left: 8px; top: 6px; }
+  .xt-scene-guide i { display: none; }
+  .xt-spot { min-width: 78px; padding: 5px 6px 5px 18px; }
+  .xt-spot b { font-size: 10px; }
+  .xt-spot-dot { left: 6px; }
+  .xt-door { width: 92px; min-height: 60px; }
+  .xt-stair-caption p { display: none; }
+  .xt-stair-down { min-width: 158px; }
+  .xt-tier-pick { width: 104px; }
+  .xt-train-caption p { display: none; }
+  .xt-train-note { max-width: 170px; }
+}
